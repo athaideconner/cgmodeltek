@@ -132,7 +132,17 @@ describe('Analytics', () => {
 });
 
 describe('Utils', () => {
-  it('should work', () => {
+  it('should pass', () => {
     expect(true).toBe(true);
   });
-}); 
+});
+
+interface TestData {
+  input: string;
+  expected: string;
+}
+
+const testCases: TestData[] = [
+  { input: 'test', expected: 'test' },
+  { input: 'hello world', expected: 'hello world' }
+]; 

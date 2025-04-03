@@ -7,7 +7,7 @@ export default function FlyingPlane() {
       <div 
         className="animate-slide-in-right mb-8"
         style={{
-          inline-size: '280px',
+          width: '280px',
           height: '160px',
           position: 'relative'
         }}

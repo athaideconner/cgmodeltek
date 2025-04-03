@@ -1,9 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import TwinklingStars from '@/components/ui/TwinklingStars';
 import ArchitecturalBackground from '@/components/ui/ArchitecturalBackground';
-import FlyingPlane from '@/components/ui/FlyingPlane';
 
 export const metadata: Metadata = {
   title: 'CG Model Tek - Precision Engineering for Aerospace Excellence',
