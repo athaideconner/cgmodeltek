@@ -132,17 +132,19 @@ describe('Analytics', () => {
 });
 
 describe('Utils', () => {
-  it('should pass', () => {
-    expect(true).toBe(true);
+  const testCases: TestCase[] = [
+    { input: 'test', expected: 'test' },
+    { input: 'hello', expected: 'hello' }
+  ];
+
+  testCases.forEach(({ input, expected }) => {
+    it(`should handle ${input}`, () => {
+      expect(input).toBe(expected);
+    });
   });
 });
 
-interface TestData {
+interface TestCase {
   input: string;
   expected: string;
-}
-
-const testCases: TestData[] = [
-  { input: 'test', expected: 'test' },
-  { input: 'hello world', expected: 'hello world' }
-]; 
+} 
