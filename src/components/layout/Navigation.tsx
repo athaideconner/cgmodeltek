@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import ArchitecturalBackground from '@/components/ui/ArchitecturalBackground';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,46 +18,50 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-lg shadow-lg">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-700 shadow-lg">
+      <div className="absolute inset-0 overflow-hidden">
+        <ArchitecturalBackground startIndex={1} count={3} opacity={0.15} />
+      </div>
       <div className="max-w-7xl mx-auto px-3 sm:px-4">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="flex items-center h-24">
           <div className="flex-shrink-0">
             <Link 
               href="/" 
-              className="flex items-center group"
+              className="flex items-center group py-2"
             >
               <Image
-                src="/images/Logo/cg_logo.png"
+                src="/images/Logo/banner_logo.png"
                 alt="CG Model Tek Logo"
                 width={90}
                 height={90}
-                className="w-auto h-12 sm:h-16 object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-125"
+                className="w-auto h-16 sm:h-20 object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-125"
                 style={{ filter: 'brightness(1.2)' }}
               />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-6">
+          <div className="hidden md:flex md:items-center md:space-x-4 justify-end flex-1">
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`
-                  relative px-3 py-2 font-michroma text-base tracking-wide
+                className="bg-gray-800 hover:bg-gray-700 transition-colors rounded-lg"
+              >
+                <div className={`
+                  relative px-4 py-3 font-michroma text-base tracking-wide font-bold
                   transition-all duration-300 group
                   ${pathname === item.href 
-                    ? 'text-[#4da8ff] font-semibold' 
+                    ? 'text-[#4da8ff]' 
                     : 'text-white hover:text-[#4da8ff]'}
-                `}
-              >
-                {item.label}
-                <span className={`
-                  absolute bottom-0 left-0 h-0.5 bg-[#4da8ff]
-                  transition-all duration-300 ease-in-out
-                  ${pathname === item.href ? 'w-full' : 'w-0'}
-                  group-hover:w-full
-                `} />
+                `}>
+                  {item.label}
+                  <span className={`
+                    absolute bottom-0 left-0 h-0.5 bg-[#4da8ff]
+                    transition-all duration-300 ease-in-out w-full opacity-0
+                    ${pathname === item.href ? 'opacity-100' : 'group-hover:opacity-100'}
+                  `} />
+                </div>
               </Link>
             ))}
           </div>
@@ -86,18 +91,18 @@ export default function Navigation() {
       {/* Mobile menu */}
       <div 
         className={`
-          md:hidden fixed inset-0 bg-gray-900/98 backdrop-blur-xl transform transition-all duration-500 ease-in-out
+          md:hidden fixed inset-0 bg-gray-800/98 backdrop-blur-xl transform transition-all duration-500 ease-in-out
           ${isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
         `}
       >
         <div className="flex flex-col min-h-screen">
-          <div className="flex justify-between items-center p-3 border-b border-white/10">
+          <div className="flex justify-between items-center p-3 border-b border-gray-700/50">
             <Link
               href="/" 
               className="flex items-center group"
             >
               <Image
-                src="/images/Logo/cg_logo.png"
+                src="/images/Logo/banner_logo.png"
                 alt="CG Model Tek Logo"
                 width={90}
                 height={90}
@@ -139,7 +144,7 @@ export default function Navigation() {
               </Link>
             ))}
           </div>
-          <div className="mt-auto p-3 border-t border-white/10">
+          <div className="mt-auto p-3 border-t border-gray-700/50">
             <div className="flex justify-center space-x-6">
               <a href="tel:+1234567890" className="text-white hover:text-[#4da8ff] transition-colors duration-300">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
