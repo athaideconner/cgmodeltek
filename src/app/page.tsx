@@ -37,7 +37,7 @@ export default function Home() {
           <div className="animate-slide-in-left px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 lg:mb-10 font-michroma tracking-tight">
               Revolutionizing{' '}
-              <span className="inline-block bg-gradient-to-r from-[#4da8ff] to-[#a5d4ff] text-transparent bg-clip-text">
+              <span className="inline-block bg-gradient-to-r from-primary-400 to-primary-300 text-transparent bg-clip-text">
                 Aerospace
               </span>{' '}
               Innovation
@@ -53,7 +53,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-[#4da8ff] hover:bg-[#4da8ff]/90 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-primary-500 hover:bg-primary-600 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
               Get Started
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,7 +62,7 @@ export default function Home() {
             </Link>
             <Link
               href="/about"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-[#4da8ff] bg-white/10 hover:bg-white/20 rounded-lg transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-400 bg-white/10 hover:bg-white/20 rounded-lg transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5"
             >
               Learn More
             </Link>
@@ -70,64 +70,74 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why CG Model Tek Section - Lighter */}
+      {/* Why CG Model Tek Section */}
       <section className="w-full py-20 bg-gray-800 relative">
-        <ArchitecturalBackground startIndex={1} count={6} opacity={0.3} />
+        <ArchitecturalBackground startIndex={1} count={3} opacity={0.3} />
         <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Why CG Model Tek?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Why CG Model Tek?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Unmatched Precision</h3>
+            <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors shadow-md hover:shadow-lg">
+              <h3 className="text-xl font-semibold mb-4 text-primary-300">Unmatched Precision</h3>
               <p className="text-gray-200">Aerospace-grade precision for every prototype, ensuring accuracy in every detail.</p>
             </div>
-            <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Proven Expertise</h3>
+            <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors shadow-md hover:shadow-lg">
+              <h3 className="text-xl font-semibold mb-4 text-primary-300">Proven Expertise</h3>
               <p className="text-gray-200">Specialized in wind tunnel models, UAVs, and flight simulation with years of experience.</p>
             </div>
-            <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Rapid Innovation</h3>
+            <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors shadow-md hover:shadow-lg">
+              <h3 className="text-xl font-semibold mb-4 text-primary-300">Rapid Innovation</h3>
               <p className="text-gray-200">Fast iteration cycles to accelerate your aerospace development process.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Specialties Section - Even Lighter */}
+      {/* Specialties Section */}
       <section className="w-full py-20 bg-gray-700 relative">
-        <ArchitecturalBackground startIndex={7} count={6} opacity={0.3} />
+        <ArchitecturalBackground startIndex={7} count={3} opacity={0.3} />
         <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Our Specialties</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Our Specialties</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-gray-600 p-6 rounded-lg hover:bg-gray-500 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Prototyping & Scale Models</h3>
-              <p className="text-gray-200">Custom scale models for testing and validation.</p>
-            </div>
-            <div className="bg-gray-600 p-6 rounded-lg hover:bg-gray-500 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Aerodynamic Testing</h3>
-              <p className="text-gray-200">Wind tunnel models for aerodynamic analysis.</p>
-            </div>
-            <div className="bg-gray-600 p-6 rounded-lg hover:bg-gray-500 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Advanced Manufacturing</h3>
-              <p className="text-gray-200">CNC & additive manufacturing solutions.</p>
-            </div>
-            <div className="bg-gray-600 p-6 rounded-lg hover:bg-gray-500 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Material Science</h3>
-              <p className="text-gray-200">Expertise in composites and advanced materials.</p>
-            </div>
+            {[
+              {
+                title: "Prototyping & Scale Models",
+                description: "Custom scale models for testing and validation."
+              },
+              {
+                title: "Aerodynamic Testing",
+                description: "Wind tunnel models for aerodynamic analysis."
+              },
+              {
+                title: "Advanced Manufacturing",
+                description: "CNC & additive manufacturing solutions."
+              },
+              {
+                title: "Material Science",
+                description: "Expertise in composites and advanced materials."
+              }
+            ].map((specialty, index) => (
+              <div 
+                key={index}
+                className="bg-gray-600 p-6 rounded-lg hover:bg-gray-500 transition-colors shadow-md hover:shadow-lg"
+              >
+                <h3 className="text-xl font-semibold mb-4 text-primary-300">{specialty.title}</h3>
+                <p className="text-gray-200">{specialty.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Collaboration Section - Back to medium */}
+      {/* Collaboration Section */}
       <section className="w-full py-20 bg-gray-800">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Seamless Collaboration</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Seamless Collaboration</h2>
           <p className="text-xl text-gray-200">
             From initial design to final validation, we work closely with engineers, manufacturers, and R&D teams to ensure aerospace-grade precision.
           </p>
           <Link
             href="/contact"
-            className="inline-block mt-8 px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            className="inline-block mt-8 px-8 py-4 bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-600 transition-colors shadow-md hover:shadow-lg"
           >
             Start Your Project →
           </Link>

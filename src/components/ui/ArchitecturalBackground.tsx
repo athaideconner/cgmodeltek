@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { memo } from 'react';
 
 interface ArchitecturalBackgroundProps {
   startIndex: number;
@@ -8,12 +9,26 @@ interface ArchitecturalBackgroundProps {
   opacity?: number;
 }
 
-export default function ArchitecturalBackground({ startIndex, count, opacity = 0.25 }: ArchitecturalBackgroundProps) {
-  const getImagePath = (number: number) => {
-    // Files that start with uppercase 'Plane'
-    const upperCaseFiles = [1, 2, 6, 10];
-    const prefix = upperCaseFiles.includes(number) ? 'Plane' : 'plane';
-    return `/images/Plane_Architechural_drawings/${prefix}${number}.png`;
+// Memoize the component to prevent unnecessary re-renders
+const ArchitecturalBackground = memo(function ArchitecturalBackground({ 
+  startIndex, 
+  count, 
+  opacity = 0.25 
+}: ArchitecturalBackgroundProps) {
+  // Pre-define all image paths to avoid runtime calculations
+  const imagePaths = {
+    1: '/images/Plane_Architechural_drawings/Plane1.png',
+    2: '/images/Plane_Architechural_drawings/Plane2.png',
+    3: '/images/Plane_Architechural_drawings/plane3.png',
+    4: '/images/Plane_Architechural_drawings/plane4.png',
+    5: '/images/Plane_Architechural_drawings/plane5.png',
+    6: '/images/Plane_Architechural_drawings/Plane6.png',
+    7: '/images/Plane_Architechural_drawings/plane7.png',
+    8: '/images/Plane_Architechural_drawings/plane8.png',
+    9: '/images/Plane_Architechural_drawings/plane9.png',
+    10: '/images/Plane_Architechural_drawings/Plane10.png',
+    11: '/images/Plane_Architechural_drawings/plane11.png',
+    12: '/images/Plane_Architechural_drawings/plane12.png',
   };
 
   return (
@@ -21,7 +36,8 @@ export default function ArchitecturalBackground({ startIndex, count, opacity = 0
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 w-full h-full p-8">
         {Array.from({ length: count }).map((_, index) => {
           const imageNumber = startIndex + index;
-          const imagePath = getImagePath(imageNumber);
+          // Ensure we don't try to access non-existent images
+          const imagePath = imagePaths[imageNumber as keyof typeof imagePaths] || imagePaths[1];
           
           return (
             <div
@@ -38,8 +54,9 @@ export default function ArchitecturalBackground({ startIndex, count, opacity = 0
                 alt={`Architectural Drawing ${imageNumber}`}
                 fill
                 className="object-cover"
-                sizes="(max-inline-size: 768px) 50vw, 33vw"
-                priority={index < 4}
+                sizes="(max-width: 768px) 50vw, 33vw" // Fixed sizes attribute
+                priority={index < 2} // Reduced priority images for better performance
+                loading={index < 2 ? 'eager' : 'lazy'} // Explicit lazy loading for non-priority images
               />
             </div>
           );
@@ -47,4 +64,6 @@ export default function ArchitecturalBackground({ startIndex, count, opacity = 0
       </div>
     </div>
   );
-} 
+});
+
+export default ArchitecturalBackground; 

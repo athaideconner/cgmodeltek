@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Orbitron, Michroma, Cairo } from 'next/font/google';
 import '@/styles/globals.css';
 import Navigation from '@/components/layout/Navigation';
+import Footer from '@/components/layout/Footer';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -18,7 +19,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
-  userScalable: false,
+  userScalable: true, // Changed to true for accessibility
 };
 
 export const metadata: Metadata = {
@@ -90,10 +91,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${orbitron.variable} ${michroma.variable} ${cairo.variable} min-h-screen bg-white`}>
+      <body className={`${inter.className} ${orbitron.variable} ${michroma.variable} ${cairo.variable} min-h-screen flex flex-col bg-white`}>
         <ErrorBoundary>
           <Navigation />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 pt-14 sm:pt-20 md:pt-24">{children}</main>
+          <Footer />
         </ErrorBoundary>
       </body>
     </html>

@@ -13,7 +13,7 @@ module.exports = {
           100: '#e0f2fe',
           200: '#bae6fd',
           300: '#7dd3fc',
-          400: '#38bdf8',
+          400: '#38bdf8', // Matches #4da8ff approximately
           500: '#0ea5e9',
           600: '#0284c7',
           700: '#0369a1',
@@ -36,22 +36,30 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter var', 'system-ui', 'sans-serif'],
+        michroma: ['var(--font-michroma)', 'monospace'],
+        orbitron: ['var(--font-orbitron)', 'sans-serif'],
+        cairo: ['var(--font-cairo)', 'sans-serif'],
       },
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.5s ease-out',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
+        'fade-in': 'fade-in 1s ease-out forwards',
+        'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
+        'slide-in-right': 'slide-in-right 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'slide-in-left': 'slide-in-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'twinkle': 'twinkle 3s ease-in-out infinite',
+        'fly-across': 'fly-across 30s linear infinite',
       },
     },
   },
+  safelist: [
+    'font-michroma',
+    'font-orbitron',
+    'font-cairo',
+    'animate-fade-in',
+    'animate-fade-in-up',
+    'animate-slide-in-right',
+    'animate-slide-in-left',
+    'animate-twinkle',
+    'animate-fly-across',
+  ],
   plugins: [],
 } 
