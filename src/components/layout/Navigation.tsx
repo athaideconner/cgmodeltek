@@ -18,8 +18,10 @@ export default function Navigation() {
 
   const navigation = [
     { label: 'About', href: '/about' },
+    { label: 'Team', href: '/team' },
     { label: 'Services', href: '/services' },
     { label: 'Industries', href: '/industries' },
+    { label: 'Equipment', href: '/equipment' },
     { label: 'Contact', href: '/contact' },
   ];
 
