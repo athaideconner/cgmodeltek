@@ -46,15 +46,18 @@ export default function AboutPage() {
             </div>
             <div className="mt-8 space-y-6 text-base leading-7 text-gray-300">
               <p>
+                <span id="mission" className="block text-xl text-white font-semibold mb-2">Mission & Values</span>
                 Recently established through the acquisition of assets from a renowned manufacturing company, 
                 we are proud to offer a range of manufactured products that stand out for their uniqueness 
                 and distinction in the industry.
               </p>
               <p>
+                <span id="experience" className="block text-xl text-white font-semibold mb-2">Experience</span>
                 Our mission is to deliver top-quality products that meet the highest standards of precision 
                 and innovation, ensuring excellence in every aspect of our operations.
               </p>
               <p>
+                <span id="craftsmanship" className="block text-xl text-white font-semibold mb-2">Craftsmanship</span>
                 With over two decades of experience, we've established ourselves as a trusted partner
                 in the aerospace industry. Our state-of-the-art facility and expert team enable us
                 to tackle complex engineering challenges and deliver innovative solutions.

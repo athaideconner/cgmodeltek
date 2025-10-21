@@ -42,7 +42,7 @@ export default function IndustriesPage() {
             animate={fadeIn.animate}
             transition={{ ...fadeIn.transition, delay: 0.2 }}
           >
-            <h2 className="font-cairo text-3xl md:text-4xl font-bold text-white mb-12 border-l-4 border-blue-400 pl-4">
+            <h2 id="aerospace" className="font-cairo text-3xl md:text-4xl font-bold text-white mb-12 border-l-4 border-blue-400 pl-4">
               Aerospace/Aircraft Systems
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -78,7 +78,7 @@ export default function IndustriesPage() {
             animate={fadeIn.animate}
             transition={{ ...fadeIn.transition, delay: 0.4 }}
           >
-            <h2 className="font-cairo text-3xl md:text-4xl font-bold text-white mb-12 border-l-4 border-blue-500 pl-4">
+            <h2 id="space" className="font-cairo text-3xl md:text-4xl font-bold text-white mb-12 border-l-4 border-blue-500 pl-4">
               Space, Launch & Missile Systems
             </h2>
             <div className="bg-gray-800/50 rounded-lg p-8 backdrop-blur-sm">
@@ -124,7 +124,7 @@ export default function IndustriesPage() {
             animate={fadeIn.animate}
             transition={{ ...fadeIn.transition, delay: 0.6 }}
           >
-            <h2 className="font-cairo text-3xl md:text-4xl font-bold text-white mb-12 border-l-4 border-blue-500 pl-4">
+            <h2 id="prototype" className="font-cairo text-3xl md:text-4xl font-bold text-white mb-12 border-l-4 border-blue-500 pl-4">
               Prototype & Automotive
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -159,7 +159,7 @@ export default function IndustriesPage() {
             animate={fadeIn.animate}
             transition={{ ...fadeIn.transition, delay: 0.8 }}
           >
-            <h2 className="font-cairo text-3xl md:text-4xl font-bold text-white mb-12 border-l-4 border-blue-500 pl-4">
+            <h2 id="who-we-work-with" className="font-cairo text-3xl md:text-4xl font-bold text-white mb-12 border-l-4 border-blue-500 pl-4">
               Who We Work With
             </h2>
             <div className="bg-gray-800/50 rounded-lg p-8 backdrop-blur-sm">

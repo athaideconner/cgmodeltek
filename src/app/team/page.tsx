@@ -1,12 +1,18 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
+import TeamMemberCard, { TeamMember } from '@/components/team/TeamMemberCard';
 
 export const metadata: Metadata = {
   title: 'Team - CG Model Tek',
   description: 'Meet the leadership and engineering team behind CG Model Tek.',
 };
 
-const teamMembers = [
+const teamMembers: TeamMember[] = [
+  {
+    name: 'Chris Athaide',
+    role: 'Founder & CEO',
+    bio:
+      'Chris Athaide is the Founder and CEO of CG Model Tek LLC. He began his career as a Design and Test Engineer of wind tunnel test models at Boeing/McDonnell Douglas and later served as a CAD/CAM trainer for Unigraphics through EDS and at Boeing. Since 1999, he has held executive roles at Tri Models Inc., serving as Vice President of Sales and Contracts and as Facility Security Officer, leading proposals, pricing, customer engagement, sales, marketing, and senior corporate management while supporting Engineering, Fabrication, and Quality Assurance. He also oversaw IT as IT Manager and served as ISSM for information systems security, Facility Security Officer, ITAR Officer, and Export Compliance Officer. On October 1, 2024, he founded CG Model Tek in Tullahoma, TN, acquiring the assets of Micro Craft and relaunching as a more focused, lean specialty company in the same field. Specialties include wind tunnel model design; full-project estimation and proposal preparation; Siemens NX CAD and surfacing; and client/server troubleshooting, repair, and management.',
+  },
   {
     name: 'John M. Nichols',
     role: 'Executive Advisor (Aerospace & Automotive)',
@@ -68,25 +74,7 @@ export default function TeamPage() {
       <div className="mx-auto max-w-7xl px-6 pb-24 sm:pb-32 lg:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {teamMembers.map((member) => (
-            <div key={member.name} className="bg-gray-900 rounded-2xl p-6 shadow-sm ring-1 ring-gray-800">
-              {member.imageSrc ? (
-                <div className="relative h-64 w-full overflow-hidden rounded-xl">
-                  <Image
-                    src={member.imageSrc}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ) : (
-                <div className="h-64 w-full rounded-xl bg-gray-800 flex items-center justify-center">
-                  <span className="text-4xl font-bold text-gray-400">{getInitials(member.name)}</span>
-                </div>
-              )}
-              <h3 className="mt-6 text-xl font-semibold text-white">{member.name}</h3>
-              <p className="text-primary-300 font-medium">{member.role}</p>
-              <p className="mt-3 text-gray-300 text-sm leading-6">{member.bio}</p>
-            </div>
+            <TeamMemberCard key={member.name} member={member} />
           ))}
         </div>
       </div>

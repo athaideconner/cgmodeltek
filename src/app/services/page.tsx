@@ -18,31 +18,37 @@ const services = [
     name: 'Wind Tunnel Model Design',
     description: 'Expert design of wind tunnel models using state-of-the-art CAD software and engineering principles. We ensure precise aerodynamic testing capabilities for your aerospace projects.',
     icon: CubeTransparentIcon,
+    id: 'wind-tunnel-model-design',
   },
   {
     name: 'Model Fabrication',
     description: 'High-precision manufacturing of wind tunnel models using advanced materials and techniques. Our experienced team delivers exceptional quality and attention to detail.',
     icon: CogIcon,
+    id: 'model-fabrication',
   },
   {
     name: 'Engineering Analysis',
     description: 'Comprehensive engineering analysis including structural, thermal, and aerodynamic assessments to ensure your models meet all testing requirements.',
     icon: DocumentMagnifyingGlassIcon,
+    id: 'engineering-analysis',
   },
   {
     name: 'CAD/CAM Services',
     description: 'Advanced computer-aided design and manufacturing services utilizing the latest software tools to create precise technical drawings and manufacturing plans.',
     icon: ComputerDesktopIcon,
+    id: 'cad-cam-services',
   },
   {
     name: 'Model Support Systems',
     description: 'Design and fabrication of custom support systems and instrumentation for wind tunnel testing, ensuring reliable and accurate data collection.',
     icon: WrenchScrewdriverIcon,
+    id: 'model-support-systems',
   },
   {
     name: 'Project Management',
     description: 'End-to-end project management services to ensure your wind tunnel testing projects are completed on time and within budget while meeting all specifications.',
     icon: RocketLaunchIcon,
+    id: 'project-management',
   },
 ];
 
@@ -71,6 +77,7 @@ export default function ServicesPage() {
               <div
                 key={service.name}
                 className="flex flex-col bg-gray-900 rounded-2xl p-8 transition duration-300 ease-in-out hover:bg-gray-700"
+                id={service.id}
               >
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary-600/10">
                   <service.icon className="h-8 w-8 text-primary-400" aria-hidden="true" />

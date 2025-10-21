@@ -8,6 +8,7 @@ import ArchitecturalBackground from '@/components/ui/ArchitecturalBackground';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState<string | null>(null);
   const pathname = usePathname();
 
   const navigation = [
@@ -15,8 +16,32 @@ export default function Navigation() {
     { label: 'Services', href: '/services' },
     { label: 'Industries', href: '/industries' },
     { label: 'Team', href: '/team' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Contact', href: '/contact' },
   ];
+
+  const dropdowns: Record<string, { label: string; href: string }[]> = {
+    About: [
+      { label: 'Overview', href: '/about' },
+      { label: 'Mission & Values', href: '/about#mission' },
+      { label: 'Experience', href: '/about#experience' },
+      { label: 'Craftsmanship', href: '/about#craftsmanship' },
+    ],
+    Services: [
+      { label: 'Wind Tunnel Model Design', href: '/services#wind-tunnel-model-design' },
+      { label: 'Model Fabrication', href: '/services#model-fabrication' },
+      { label: 'Engineering Analysis', href: '/services#engineering-analysis' },
+      { label: 'CAD/CAM Services', href: '/services#cad-cam-services' },
+      { label: 'Model Support Systems', href: '/services#model-support-systems' },
+      { label: 'Project Management', href: '/services#project-management' },
+    ],
+    Industries: [
+      { label: 'Aerospace/Aircraft Systems', href: '/industries#aerospace' },
+      { label: 'Space, Launch & Missile', href: '/industries#space' },
+      { label: 'Prototype & Automotive', href: '/industries#prototype' },
+      { label: 'Who We Work With', href: '/industries#who-we-work-with' },
+    ],
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-700 shadow-lg">
@@ -43,28 +68,68 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-4 justify-end flex-1">
-            {navigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="bg-gray-800 hover:bg-gray-700 transition-colors rounded-lg"
-              >
-                <div className={`
-                  relative px-4 py-3 font-michroma text-base tracking-wide font-bold
-                  transition-all duration-300 group
-                  ${pathname === item.href 
-                    ? 'text-[#4da8ff]' 
-                    : 'text-white hover:text-[#4da8ff]'}
-                `}>
-                  {item.label}
-                  <span className={`
-                    absolute bottom-0 left-0 h-0.5 bg-[#4da8ff]
-                    transition-all duration-300 ease-in-out w-full opacity-0
-                    ${pathname === item.href ? 'opacity-100' : 'group-hover:opacity-100'}
-                  `} />
-                </div>
-              </Link>
-            ))}
+            {navigation.map((item) => {
+              const items = dropdowns[item.label as keyof typeof dropdowns];
+              if (items && items.length) {
+                return (
+                  <div key={item.href} className="relative group">
+                    <Link
+                      href={item.href}
+                      className="bg-gray-800 hover:bg-gray-700 transition-colors rounded-lg"
+                    >
+                      <div className={`
+                        relative px-4 py-3 font-michroma text-base tracking-wide font-bold
+                        transition-all duration-300 flex items-center gap-1
+                        ${pathname === item.href 
+                          ? 'text-[#4da8ff]'
+                          : 'text-white hover:text-[#4da8ff]'}
+                      `}>
+                        {item.label}
+                        <svg className="w-3.5 h-3.5 ml-1 transition-transform group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.104l3.71-3.873a.75.75 0 111.08 1.04l-4.24 4.43a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                        </svg>
+                        <span className={`
+                          absolute bottom-0 left-0 h-0.5 bg-[#4da8ff]
+                          transition-all duration-300 ease-in-out w-full opacity-0
+                          ${pathname === item.href ? 'opacity-100' : 'group-hover:opacity-100'}
+                        `} />
+                      </div>
+                    </Link>
+                    <div className="absolute left-0 top-full mt-2 hidden group-hover:block">
+                      <div className="bg-white/95 backdrop-blur rounded-lg shadow-xl border border-gray-200 min-w-[16rem] py-2">
+                        {items.map((sub) => (
+                          <Link key={sub.href} href={sub.href} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="bg-gray-800 hover:bg-gray-700 transition-colors rounded-lg"
+                >
+                  <div className={`
+                    relative px-4 py-3 font-michroma text-base tracking-wide font-bold
+                    transition-all duration-300 group
+                    ${pathname === item.href 
+                      ? 'text-[#4da8ff]' 
+                      : 'text-white hover:text-[#4da8ff]'}
+                  `}>
+                    {item.label}
+                    <span className={`
+                      absolute bottom-0 left-0 h-0.5 bg-[#4da8ff]
+                      transition-all duration-300 ease-in-out w-full opacity-0
+                      ${pathname === item.href ? 'opacity-100' : 'group-hover:opacity-100'}
+                    `} />
+                  </div>
+                </Link>
+              );
+            })}
           </div>
 
           {/* Mobile menu button */}
@@ -121,29 +186,67 @@ export default function Navigation() {
               </svg>
             </button>
           </div>
-          <div className="flex flex-col justify-start items-center space-y-4 py-6 px-4">
-            {navigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`
-                  text-lg font-michroma text-center w-full py-2
-                  transition-all duration-300 relative group
-                  ${pathname === item.href 
-                    ? 'text-[#4da8ff] font-semibold' 
-                    : 'text-white hover:text-[#4da8ff]'}
-                `}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-                <span className={`
-                  absolute bottom-0 left-0 h-0.5 bg-[#4da8ff]
-                  transition-all duration-300 ease-in-out
-                  ${pathname === item.href ? 'w-full' : 'w-0'}
-                  group-hover:w-full
-                `} />
-              </Link>
-            ))}
+          <div className="flex flex-col justify-start items-center space-y-2 py-6 px-4">
+            {navigation.map((item) => {
+              const items = dropdowns[item.label as keyof typeof dropdowns];
+              if (items && items.length) {
+                const isSectionOpen = mobileOpen === item.label;
+                return (
+                  <div key={item.href} className="w-full">
+                    <button
+                      className={`
+                        flex w-full items-center justify-between text-lg font-michroma text-left py-3 px-2 rounded-md
+                        transition-all duration-300
+                        ${pathname === item.href ? 'text-[#4da8ff] font-semibold' : 'text-white hover:text-[#4da8ff]'}
+                      `}
+                      onClick={() => setMobileOpen(isSectionOpen ? null : item.label)}
+                      aria-expanded={isSectionOpen}
+                    >
+                      <span>{item.label}</span>
+                      <svg className={`w-4 h-4 transition-transform ${isSectionOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.104l3.71-3.873a.75.75 0 111.08 1.04l-4.24 4.43a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                      </svg>
+                    </button>
+                    <div className={`${isSectionOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden transition-all duration-300`}> 
+                      <div className="pl-3 py-1 space-y-1">
+                        {items.map((sub) => (
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            className="block text-sm text-gray-200 hover:text-[#4da8ff] py-2"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`
+                    text-lg font-michroma text-center w-full py-2
+                    transition-all duration-300 relative group
+                    ${pathname === item.href 
+                      ? 'text-[#4da8ff] font-semibold' 
+                      : 'text-white hover:text-[#4da8ff]'}
+                  `}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                  <span className={`
+                    absolute bottom-0 left-0 h-0.5 bg-[#4da8ff]
+                    transition-all duration-300 ease-in-out
+                    ${pathname === item.href ? 'w-full' : 'w-0'}
+                    group-hover:w-full
+                  `} />
+                </Link>
+              );
+            })}
           </div>
           <div className="mt-auto p-3 border-t border-gray-700/50">
             <div className="flex justify-center space-x-6">
