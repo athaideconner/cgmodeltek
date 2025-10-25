@@ -10,8 +10,21 @@ const teamMembers: TeamMember[] = [
   {
     name: 'Chris Athaide',
     role: 'Founder & CEO',
+    imageSrc: '/images/team/chris-athaide.jpg',
     bio:
       'Chris Athaide is the Founder and CEO of CG Model Tek LLC. He began his career as a Design and Test Engineer of wind tunnel test models at Boeing/McDonnell Douglas and later served as a CAD/CAM trainer for Unigraphics through EDS and at Boeing. Since 1999, he has held executive roles at Tri Models Inc., serving as Vice President of Sales and Contracts and as Facility Security Officer, leading proposals, pricing, customer engagement, sales, marketing, and senior corporate management while supporting Engineering, Fabrication, and Quality Assurance. He also oversaw IT as IT Manager and served as ISSM for information systems security, Facility Security Officer, ITAR Officer, and Export Compliance Officer. On October 1, 2024, he founded CG Model Tek in Tullahoma, TN, acquiring the assets of Micro Craft and relaunching as a more focused, lean specialty company in the same field. Specialties include wind tunnel model design; full-project estimation and proposal preparation; Siemens NX CAD and surfacing; and client/server troubleshooting, repair, and management.',
+  },
+  {
+    name: 'Gautam',
+    role: 'President',
+    bio:
+      'Gautam serves as President of CG Model Tek, providing day-to-day leadership across operations, customer engagement, and strategic growth. He partners closely with engineering and manufacturing to deliver precision, schedule certainty, and exceptional customer outcomes.',
+  },
+  {
+    name: 'Narash',
+    role: 'Chief Financial Officer (CFO)',
+    bio:
+      'Narash is the Chief Financial Officer of CG Model Tek, responsible for financial strategy, planning and analysis, budgeting, and compliance. He supports pricing, proposals, and long-term investment decisions to strengthen sustainable growth.',
   },
   {
     name: 'John M. Nichols',

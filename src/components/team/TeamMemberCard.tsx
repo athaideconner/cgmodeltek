@@ -33,9 +33,16 @@ export default function TeamMemberCard({ member }: { member: TeamMember }) {
 
   return (
     <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-sm ring-1 ring-gray-800 hover:ring-gray-700 hover:shadow-md transition">
-      <div className="relative h-64 w-full">
+      <div className="relative h-72 sm:h-80 w-full bg-gray-800">
         {member.imageSrc ? (
-          <Image src={member.imageSrc} alt={member.name} fill className="object-cover" />
+          <Image
+            src={member.imageSrc}
+            alt={member.name}
+            fill
+            className="object-contain"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            priority={member.role?.toLowerCase().includes('founder') || member.role?.toLowerCase().includes('ceo')}
+          />
         ) : (
           <div className="h-full w-full bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center">
             <span className="text-5xl font-bold text-gray-300">{getInitials(member.name)}</span>

@@ -93,7 +93,7 @@ export default function RootLayout({
       <body className={`${inter.className} ${orbitron.variable} ${michroma.variable} ${cairo.variable} min-h-screen bg-white`}>
         <ErrorBoundary>
           <Navigation />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 pt-28">{children}</main>
         </ErrorBoundary>
       </body>
     </html>

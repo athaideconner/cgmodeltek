@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -8,8 +8,14 @@ import ArchitecturalBackground from '@/components/ui/ArchitecturalBackground';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState<string | null>(null);
   const pathname = usePathname();
+  const navRef = useRef<HTMLElement | null>(null);
+  const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const menuRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const openTimerRef = useRef<number | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
 
   const navigation = [
     { label: 'About', href: '/about' },
@@ -22,10 +28,11 @@ export default function Navigation() {
 
   const dropdowns: Record<string, { label: string; href: string }[]> = {
     About: [
-      { label: 'Overview', href: '/about' },
-      { label: 'Mission & Values', href: '/about#mission' },
-      { label: 'Experience', href: '/about#experience' },
-      { label: 'Craftsmanship', href: '/about#craftsmanship' },
+      { label: 'About CG Model Tek', href: '/about' },
+      { label: 'Robotic Machine Tending', href: '/robotic-machine-tending' },
+      { label: 'Customer Reviews', href: '/reviews' },
+      { label: 'FAQ', href: '/faq' },
+      { label: 'Follow us', href: '/contact#follow' },
     ],
     Services: [
       { label: 'Wind Tunnel Model Design', href: '/services#wind-tunnel-model-design' },
@@ -43,8 +50,51 @@ export default function Navigation() {
     ],
   };
 
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (!openDropdown) return;
+      const target = e.target as Node;
+      if (navRef.current && !navRef.current.contains(target)) {
+        setOpenDropdown(null);
+      }
+    }
+    function handleKeydown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        setOpenDropdown((current) => {
+          if (current) {
+            const btn = buttonRefs.current[current];
+            btn?.focus();
+          }
+          return null;
+        });
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeydown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeydown);
+    };
+  }, [openDropdown]);
+
+  useEffect(() => {
+    // Close dropdowns when navigating to a new route
+    setOpenDropdown(null);
+    setIsOpen(false);
+    setMobileOpen(null);
+    // Clear any pending timers
+    if (openTimerRef.current) {
+      window.clearTimeout(openTimerRef.current);
+      openTimerRef.current = null;
+    }
+    if (closeTimerRef.current) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }, [pathname]);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-700 shadow-lg">
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-gray-700 shadow-lg">
       <div className="absolute inset-0 overflow-hidden">
         <ArchitecturalBackground startIndex={1} count={3} opacity={0.15} />
       </div>
@@ -67,14 +117,59 @@ export default function Navigation() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-4 justify-end flex-1">
+          <div className="hidden md:flex md:items-center md:space-x-4 justify-end flex-1" role="menubar" aria-label="Main navigation">
             {navigation.map((item) => {
               const items = dropdowns[item.label as keyof typeof dropdowns];
               if (items && items.length) {
+                const isOpen = openDropdown === item.label;
+                const menuId = `menu-${item.label.toLowerCase().replace(/\s+/g, '-')}`;
+                const accessibleLabel = `${isOpen ? 'Close' : 'Open'} submenu: ${item.label}`;
                 return (
-                  <div key={item.href} className="relative group">
-                    <Link
-                      href={item.href}
+                  <div
+                    key={item.href}
+                    className="relative group"
+                    onMouseEnter={() => {
+                      if (closeTimerRef.current) {
+                        window.clearTimeout(closeTimerRef.current);
+                        closeTimerRef.current = null;
+                      }
+                      openTimerRef.current = window.setTimeout(() => {
+                        setOpenDropdown(item.label);
+                      }, 120);
+                    }}
+                    onMouseLeave={() => {
+                      if (openTimerRef.current) {
+                        window.clearTimeout(openTimerRef.current);
+                        openTimerRef.current = null;
+                      }
+                      closeTimerRef.current = window.setTimeout(() => {
+                        setOpenDropdown(null);
+                      }, 150);
+                    }}
+                  >
+                    <button
+                      type="button"
+                      aria-haspopup="menu"
+                      aria-expanded={isOpen}
+                      aria-controls={menuId}
+                      aria-label={accessibleLabel}
+                      role="menuitem"
+                      onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setOpenDropdown(item.label);
+                          requestAnimationFrame(() => {
+                            const first = menuRefs.current[item.label]?.querySelector('a');
+                            (first as HTMLElement | null)?.focus();
+                          });
+                        }
+                        if (e.key === 'Escape') {
+                          e.preventDefault();
+                          setOpenDropdown(null);
+                        }
+                      }}
+                      ref={(el) => (buttonRefs.current[item.label] = el)}
                       className="bg-gray-800 hover:bg-gray-700 transition-colors rounded-lg"
                     >
                       <div className={`
@@ -84,8 +179,9 @@ export default function Navigation() {
                           ? 'text-[#4da8ff]'
                           : 'text-white hover:text-[#4da8ff]'}
                       `}>
-                        {item.label}
-                        <svg className="w-3.5 h-3.5 ml-1 transition-transform group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <span className="select-none">{item.label}</span>
+                        <span className="sr-only">{isOpen ? 'Close submenu' : 'Open submenu'}</span>
+                        <svg className={`w-3.5 h-3.5 ml-1 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                           <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.104l3.71-3.873a.75.75 0 111.08 1.04l-4.24 4.43a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clipRule="evenodd" />
                         </svg>
                         <span className={`
@@ -94,11 +190,52 @@ export default function Navigation() {
                           ${pathname === item.href ? 'opacity-100' : 'group-hover:opacity-100'}
                         `} />
                       </div>
-                    </Link>
-                    <div className="absolute left-0 top-full mt-2 hidden group-hover:block">
-                      <div className="bg-white/95 backdrop-blur rounded-lg shadow-xl border border-gray-200 min-w-[16rem] py-2">
+                    </button>
+                    <div
+                      className={`absolute left-0 top-full mt-2 ${isOpen ? 'block' : 'hidden'} group-hover:block`}
+                    > 
+                      <div
+                        className="bg-white/95 backdrop-blur rounded-lg shadow-xl border border-gray-200 min-w-[16rem] py-2"
+                        role="menu"
+                        aria-label={`${item.label} submenu`}
+                        id={menuId}
+                        ref={(el) => (menuRefs.current[item.label] = el)}
+                        onKeyDown={(e) => {
+                          const links = Array.from(menuRefs.current[item.label]?.querySelectorAll('a') || []);
+                          const idx = links.indexOf(document.activeElement as Element);
+                          if (e.key === 'ArrowDown') {
+                            e.preventDefault();
+                            const next = links[(idx + 1) % links.length] as HTMLElement | undefined;
+                            next?.focus();
+                          }
+                          if (e.key === 'ArrowUp') {
+                            e.preventDefault();
+                            const prev = links[(idx - 1 + links.length) % links.length] as HTMLElement | undefined;
+                            prev?.focus();
+                          }
+                          if (e.key === 'Home') {
+                            e.preventDefault();
+                            (links[0] as HTMLElement | undefined)?.focus();
+                          }
+                          if (e.key === 'End') {
+                            e.preventDefault();
+                            (links[links.length - 1] as HTMLElement | undefined)?.focus();
+                          }
+                          if (e.key === 'Escape') {
+                            e.preventDefault();
+                            setOpenDropdown(null);
+                            buttonRefs.current[item.label]?.focus();
+                          }
+                        }}
+                      >
                         {items.map((sub) => (
-                          <Link key={sub.href} href={sub.href} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
+                            role="menuitem"
+                            tabIndex={-1}
+                          >
                             {sub.label}
                           </Link>
                         ))}
@@ -138,6 +275,7 @@ export default function Navigation() {
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-[#4da8ff] hover:bg-white/5 focus:outline-none transition-all duration-300"
               aria-expanded={isOpen}
+              aria-label={isOpen ? 'Close main menu' : 'Open main menu'}
             >
               <span className="sr-only">Open main menu</span>
               {!isOpen ? (
@@ -201,13 +339,15 @@ export default function Navigation() {
                       `}
                       onClick={() => setMobileOpen(isSectionOpen ? null : item.label)}
                       aria-expanded={isSectionOpen}
+                      aria-controls={`m-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                      aria-label={`${isSectionOpen ? 'Close' : 'Open'} submenu: ${item.label}`}
                     >
                       <span>{item.label}</span>
                       <svg className={`w-4 h-4 transition-transform ${isSectionOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.104l3.71-3.873a.75.75 0 111.08 1.04l-4.24 4.43a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clipRule="evenodd" />
                       </svg>
                     </button>
-                    <div className={`${isSectionOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden transition-all duration-300`}> 
+                    <div id={`m-${item.label.toLowerCase().replace(/\s+/g, '-')}`} className={`${isSectionOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden transition-all duration-300`}> 
                       <div className="pl-3 py-1 space-y-1">
                         {items.map((sub) => (
                           <Link
