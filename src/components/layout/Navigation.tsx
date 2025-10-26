@@ -169,7 +169,9 @@ export default function Navigation() {
                           setOpenDropdown(null);
                         }
                       }}
-                      ref={(el) => (buttonRefs.current[item.label] = el)}
+                      ref={(el) => {
+                        buttonRefs.current[item.label] = el;
+                      }}
                       className="bg-gray-800 hover:bg-gray-700 transition-colors rounded-lg"
                     >
                       <div className={`
@@ -201,10 +203,14 @@ export default function Navigation() {
                         role="menu"
                         aria-label={`${item.label} submenu`}
                         id={menuId}
-                        ref={(el) => (menuRefs.current[item.label] = el)}
+                        ref={(el) => {
+                          menuRefs.current[item.label] = el as HTMLDivElement | null;
+                        }}
                         onKeyDown={(e) => {
-                          const links = Array.from(menuRefs.current[item.label]?.querySelectorAll('a') || []);
-                          const idx = links.indexOf(document.activeElement as Element);
+                          const links = Array.from(
+                            (menuRefs.current[item.label]?.querySelectorAll('a') || []) as NodeListOf<HTMLAnchorElement>
+                          ) as HTMLAnchorElement[];
+                          const idx = links.indexOf(document.activeElement as HTMLAnchorElement);
                           if (e.key === 'ArrowDown') {
                             e.preventDefault();
                             const next = links[(idx + 1) % links.length] as HTMLElement | undefined;
