@@ -1,9 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import TwinklingStars from '@/components/ui/TwinklingStars';
 import ArchitecturalBackground from '@/components/ui/ArchitecturalBackground';
-import FlyingPlane from '@/components/ui/FlyingPlane';
 
 export const metadata: Metadata = {
   title: 'CG Model Tek - Precision Engineering for Aerospace Excellence',
@@ -14,62 +12,60 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       {/* Hero Section */}
-      <section className="w-full min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 py-16 sm:py-20 md:py-32 bg-gradient-to-b from-[#001b44] via-[#002c6a] to-[#003892] relative overflow-hidden">
-        {/* Background overlay with improved opacity and z-index */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#4da8ff]/10 via-transparent to-transparent z-0" />
-        <div className="absolute inset-0 bg-black/20 z-0" /> {/* Add subtle dark overlay for better contrast */}
-        <div className="absolute inset-0 z-0">
-          <TwinklingStars />
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background with enhanced gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-orange-500 via-orange-400 to-orange-300">
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-500/40 via-orange-500/20 to-orange-500/40" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2)_0%,transparent_60%)]" />
         </div>
-        <div className="absolute inset-0 z-0">
-          <FlyingPlane />
-        </div>
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="space-y-4 sm:space-y-6 md:space-y-8 mb-6 sm:mb-8 md:mb-12">
-            <div className="relative z-10 text-center">
-              <div className="flex justify-center mb-8">
-                <Image
-                  src="/images/Logo/cg_logo.png"
-                  alt="CG Model Tek Logo"
-                  width={200}
-                  height={200}
-                  className="w-auto h-[180px] sm:h-[240px] md:h-[280px] lg:h-[320px] object-contain transition-all duration-300 hover:scale-105"
-                  style={{ filter: 'brightness(1.1) contrast(1.1)' }}
-                  priority
-                />
-              </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-orbitron text-white mb-6 animate-fade-in drop-shadow-lg">
-                Revolutionizing <span className="bg-gradient-to-r from-orange-900 via-orange-500 to-white bg-clip-text text-transparent drop-shadow-lg">Aerospace</span> Innovation
-              </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto animate-fade-in-up drop-shadow-lg">
-                Precision-crafted models for cutting-edge aviation.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center animate-fade-in-up delay-300">
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto group relative px-4 sm:px-6 md:px-10 py-3 sm:py-4 md:py-5 bg-gradient-to-r from-[#007BFF] to-[#4da8ff] text-white rounded-lg font-bold text-sm sm:text-base md:text-lg transition-all duration-300 hover:scale-105 shadow-lg shadow-[#4da8ff]/20 overflow-hidden"
-              >
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#4da8ff] to-[#007BFF] transition-transform duration-500 transform translate-x-full group-hover:translate-x-0" />
-                <span className="relative flex items-center justify-center gap-2">
-                  Request a Consultation
-                  <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 transition-transform duration-300 transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </span>
-              </Link>
-              <Link
-                href="/services"
-                className="w-full sm:w-auto group px-4 sm:px-6 md:px-10 py-3 sm:py-4 md:py-5 bg-white/10 backdrop-blur-md text-white rounded-lg font-bold text-sm sm:text-base md:text-lg border-2 border-white/30 transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:border-white/40 shadow-lg shadow-black/10"
-              >
-                <span className="flex items-center justify-center gap-2">
-                  Explore Capabilities
-                  <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 transition-transform duration-300 transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </span>
-              </Link>
-            </div>
+
+        {/* Content */}
+        <div className="relative z-10 text-center w-full max-w-[2000px] mx-auto">
+          {/* Logo with enhanced styling */}
+          <div className="mb-16 animate-slide-in-right">
+            <Image
+              src="/images/Logo/blue_logo.png"
+              alt="CG Model Tek Logo"
+              width={800}
+              height={800}
+              className="mx-auto w-auto h-72 sm:h-96 lg:h-[450px] object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all duration-500 hover:scale-105"
+              priority
+            />
+          </div>
+
+          {/* Main heading with enhanced contrast */}
+          <div className="animate-slide-in-left px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 lg:mb-10 font-michroma tracking-tight">
+              Revolutionizing{' '}
+              <span className="inline-block bg-gradient-to-r from-[#4da8ff] to-[#a5d4ff] text-transparent bg-clip-text">
+                Aerospace
+              </span>{' '}
+              Innovation
+            </h1>
+          </div>
+
+          {/* Subheading with enhanced contrast */}
+          <p className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-8 sm:mb-12 lg:mb-16 max-w-3xl mx-auto font-light animate-fade-in">
+            Transforming ideas into exceptional aerospace solutions through cutting-edge technology and expertise
+          </p>
+
+          {/* CTA Buttons with enhanced styling */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-[#4da8ff] hover:bg-[#4da8ff]/90 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            >
+              Get Started
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+            <Link
+              href="/about"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-[#4da8ff] bg-white/10 hover:bg-white/20 rounded-lg transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:-translate-y-0.5"
+            >
+              Learn More
+            </Link>
           </div>
         </div>
       </section>

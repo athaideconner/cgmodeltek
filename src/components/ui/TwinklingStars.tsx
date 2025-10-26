@@ -30,7 +30,7 @@ export default function TwinklingStars() {
             width: `${star.size}px`,
             height: `${star.size}px`,
             animationDelay: `${star.delay}s`,
-            boxShadow: '0 0 1px rgba(255, 255, 255, 0.8)', // Much smaller glow
+            boxShadow: '0 0 2px rgba(255, 255, 255, 0.8)', // White glow
           }}
         />
       ))}

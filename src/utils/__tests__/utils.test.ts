@@ -21,7 +21,7 @@ global.PerformanceObserver = MockPerformanceObserver as unknown as typeof Perfor
 describe('Performance Monitor', () => {
   beforeEach(() => {
     // Reset performance monitor instance
-    (performanceMonitor as any).metrics = {
+  (performanceMonitor as unknown as { metrics: Record<string, number> }).metrics = {
       pageLoad: 0,
       firstContentfulPaint: 0,
       largestContentfulPaint: 0,
@@ -132,7 +132,9 @@ describe('Analytics', () => {
 });
 
 describe('Utils', () => {
-  it('should work', () => {
+  it('should pass', () => {
     expect(true).toBe(true);
   });
-}); 
+});
+
+// Placeholder types and example cases removed to keep tests minimal and lint‑clean

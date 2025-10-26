@@ -109,7 +109,7 @@ export default function ContactContent() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-8" id="follow">
               <div>
                 <h3 className="text-lg font-semibold leading-8 text-white">Location</h3>
                 <address className="mt-2 text-base leading-7 text-gray-300 not-italic">
@@ -125,8 +125,8 @@ export default function ContactContent() {
                   <div className="mt-1">
                     <dt className="sr-only">Phone number</dt>
                     <dd>
-                      <a className="hover:text-white" href="tel:+1234567890">
-                        (123) 456-7890
+                      <a className="hover:text-white" href="tel:+19314552617">
+                        (931) 455-2617
                       </a>
                     </dd>
                   </div>
@@ -143,6 +143,11 @@ export default function ContactContent() {
 
               <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-900/5 shadow-2xl ring-1 ring-gray-400/10">
                 <GoogleMap />
+              </div>
+              <div className="pt-2 flex items-center gap-3">
+                <span className="text-white font-semibold">Follow us:</span>
+                <a href="https://www.facebook.com" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-white">Facebook</a>
+                <a href="https://www.youtube.com" target="_blank" rel="noreferrer" className="text-gray-300 hover:text-white">YouTube</a>
               </div>
             </div>
           </div>

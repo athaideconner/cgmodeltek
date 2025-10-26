@@ -25,6 +25,23 @@ export const metadata: Metadata = {
   title: 'CG Model Tek LLC',
   description: 'Professional 3D Modeling and Design Services',
   metadataBase: new URL('https://cgmodeltek.com'),
+  icons: {
+    icon: [
+      { url: '/images/Logo/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/images/Logo/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/Logo/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/images/Logo/favicon-64x64.png', sizes: '64x64', type: 'image/png' },
+      { url: '/images/Logo/favicon-180x180.png', sizes: '180x180', type: 'image/png' },
+      { url: '/images/Logo/favicon-dark-16x16.png', sizes: '16x16', type: 'image/png', media: '(prefers-color-scheme: dark)' },
+      { url: '/images/Logo/favicon-dark-32x32.png', sizes: '32x32', type: 'image/png', media: '(prefers-color-scheme: dark)' },
+      { url: '/images/Logo/favicon-dark-48x48.png', sizes: '48x48', type: 'image/png', media: '(prefers-color-scheme: dark)' },
+      { url: '/images/Logo/favicon-dark-64x64.png', sizes: '64x64', type: 'image/png', media: '(prefers-color-scheme: dark)' },
+      { url: '/images/Logo/favicon-dark-180x180.png', sizes: '180x180', type: 'image/png', media: '(prefers-color-scheme: dark)' },
+    ],
+    apple: [
+      { url: '/images/Logo/favicon-180x180.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   openGraph: {
     title: 'CG Model Tek LLC',
     description: 'Professional 3D Modeling and Design Services',
@@ -72,11 +89,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.className} ${orbitron.variable} ${michroma.variable} ${cairo.variable} min-h-screen bg-gray-800`}>
+    <html lang="en">
+      <body className={`${inter.className} ${orbitron.variable} ${michroma.variable} ${cairo.variable} min-h-screen bg-white`}>
         <ErrorBoundary>
           <Navigation />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 pt-28">{children}</main>
         </ErrorBoundary>
       </body>
     </html>
