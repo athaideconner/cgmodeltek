@@ -106,7 +106,7 @@ export default function Navigation() {
               className="flex items-center group py-2"
             >
               <Image
-                src="/images/Logo/banner_logo.png"
+                src="/images/Logo/blue_logo.png"
                 alt="CG Model Tek Logo"
                 width={90}
                 height={90}
@@ -117,7 +117,7 @@ export default function Navigation() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-4 justify-end flex-1" role="menubar" aria-label="Main navigation">
+          <ul className="hidden md:flex md:items-center md:space-x-2 justify-end flex-1" role="menubar" aria-label="Main navigation">
             {navigation.map((item) => {
               const items = dropdowns[item.label as keyof typeof dropdowns];
               if (items && items.length) {
@@ -125,9 +125,9 @@ export default function Navigation() {
                 const menuId = `menu-${item.label.toLowerCase().replace(/\s+/g, '-')}`;
                 const accessibleLabel = `${isOpen ? 'Close' : 'Open'} submenu: ${item.label}`;
                 return (
-                  <div
+                  <li
                     key={item.href}
-                    className="relative group"
+                    className="relative group list-none"
                     onMouseEnter={() => {
                       if (closeTimerRef.current) {
                         window.clearTimeout(closeTimerRef.current);
@@ -194,8 +194,10 @@ export default function Navigation() {
                     <div
                       className={`absolute left-0 top-full mt-2 ${isOpen ? 'block' : 'hidden'} group-hover:block`}
                     > 
-                      <div
-                        className="bg-white/95 backdrop-blur rounded-lg shadow-xl border border-gray-200 min-w-[16rem] py-2"
+                      {/* pointer arrow */}
+                      <span className="absolute -top-2 left-6 h-4 w-4 rotate-45 bg-white border border-gray-200 rounded-sm shadow-sm" aria-hidden="true" />
+                      <ul
+                        className="bg-white rounded-xl shadow-2xl border border-gray-200 min-w-[18rem] py-2 divide-y divide-gray-100 ring-1 ring-black/5"
                         role="menu"
                         aria-label={`${item.label} submenu`}
                         id={menuId}
@@ -229,45 +231,51 @@ export default function Navigation() {
                         }}
                       >
                         {items.map((sub) => (
-                          <Link
-                            key={sub.href}
-                            href={sub.href}
-                            className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
-                            role="menuitem"
-                            tabIndex={-1}
-                          >
-                            {sub.label}
-                          </Link>
+                          <li key={sub.href} role="none">
+                            <Link
+                              href={sub.href}
+                              className="flex items-center justify-between gap-4 px-4 py-3 text-[0.95rem] text-gray-800 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                              role="menuitem"
+                              tabIndex={-1}
+                            >
+                              <span className="font-medium">{sub.label}</span>
+                              <svg className="w-4 h-4 text-gray-400 group-hover:text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </Link>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
-                  </div>
+                  </li>
                 );
               }
               return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="bg-gray-800 hover:bg-gray-700 transition-colors rounded-lg"
-                >
-                  <div className={`
-                    relative px-4 py-3 font-michroma text-base tracking-wide font-bold
-                    transition-all duration-300 group
-                    ${pathname === item.href 
-                      ? 'text-[#4da8ff]' 
-                      : 'text-white hover:text-[#4da8ff]'}
-                  `}>
-                    {item.label}
-                    <span className={`
-                      absolute bottom-0 left-0 h-0.5 bg-[#4da8ff]
-                      transition-all duration-300 ease-in-out w-full opacity-0
-                      ${pathname === item.href ? 'opacity-100' : 'group-hover:opacity-100'}
-                    `} />
-                  </div>
-                </Link>
+                <li key={item.href} className="list-none">
+                  <Link
+                    href={item.href}
+                    className="bg-gray-800 hover:bg-gray-700 transition-colors rounded-lg"
+                    role="menuitem"
+                  >
+                    <div className={`
+                      relative px-4 py-3 font-michroma text-base tracking-wide font-bold
+                      transition-all duration-300 group
+                      ${pathname === item.href 
+                        ? 'text-[#4da8ff]' 
+                        : 'text-white hover:text-[#4da8ff]'}
+                    `}>
+                      {item.label}
+                      <span className={`
+                        absolute bottom-0 left-0 h-0.5 bg-[#4da8ff]
+                        transition-all duration-300 ease-in-out w-full opacity-0
+                        ${pathname === item.href ? 'opacity-100' : 'group-hover:opacity-100'}
+                      `} />
+                    </div>
+                  </Link>
+                </li>
               );
             })}
-          </div>
+          </ul>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -306,7 +314,7 @@ export default function Navigation() {
               className="flex items-center group"
             >
               <Image
-                src="/images/Logo/banner_logo.png"
+                src="/images/Logo/blue_logo.png"
                 alt="CG Model Tek Logo"
                 width={90}
                 height={90}

@@ -21,10 +21,11 @@ const teamMembers: TeamMember[] = [
       'Gautam serves as President of CG Model Tek, providing day-to-day leadership across operations, customer engagement, and strategic growth. He partners closely with engineering and manufacturing to deliver precision, schedule certainty, and exceptional customer outcomes.',
   },
   {
-    name: 'Narash',
+    name: 'Naresh Kumar',
     role: 'Chief Financial Officer (CFO)',
+    imageSrc: '/images/team/naresh-kumar.jpg',
     bio:
-      'Narash is the Chief Financial Officer of CG Model Tek, responsible for financial strategy, planning and analysis, budgeting, and compliance. He supports pricing, proposals, and long-term investment decisions to strengthen sustainable growth.',
+      'Naresh Kumar is the Chief Financial Officer of CG Model Tek, responsible for financial strategy, planning and analysis, budgeting, and compliance. He supports pricing, proposals, and long-term investment decisions to strengthen sustainable growth.',
   },
   {
     name: 'John M. Nichols',

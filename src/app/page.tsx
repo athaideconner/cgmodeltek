@@ -24,7 +24,7 @@ export default function Home() {
           {/* Logo with enhanced styling */}
           <div className="mb-16 animate-slide-in-right">
             <Image
-              src="/images/Logo/logo_with_text.png"
+              src="/images/Logo/blue_logo.png"
               alt="CG Model Tek Logo"
               width={800}
               height={800}
