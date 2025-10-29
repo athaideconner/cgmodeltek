@@ -6,9 +6,11 @@ import Image from "next/image";
 type MenuItem = { label: string; href: string };
 
 const aboutItems: MenuItem[] = [
+  { label: "About CG Model Tek", href: "/about" },
   { label: "Our Team", href: "/about#team" },
   { label: "Robotic Machine Tending", href: "/about-us/robotic-machine-tending" },
   { label: "Frequently Asked Questions", href: "/about-us/faq" },
+  { label: "Customer Reviews", href: "/reviews" },
 ];
 
 const serviceItems: MenuItem[] = [
@@ -39,7 +41,27 @@ const industryItems: MenuItem[] = [
   { label: "Firearm", href: "/industries/firearm" },
 ];
 
+const faqItems = [
+  { title: "What is Multi Axis Machining?", href: "/about-us/faq" },
+  { title: "What is CNC Milling?", href: "/about-us/faq#cnc-milling" },
+  { title: "What is CNC Turning?", href: "/about-us/faq#cnc-turning" },
+];
+
 type DropdownKey = "about" | "services" | "industries" | null;
+
+function MobileMenuItem({ item, onClick }: { item: MenuItem; onClick: () => void }) {
+  return (
+    <li>
+      <a
+        href={item.href}
+        className="block px-3 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+        onClick={onClick}
+      >
+        {item.label}
+      </a>
+    </li>
+  );
+}
 
 function Dropdown({
   label,
@@ -129,11 +151,7 @@ export default function Navbar() {
                   <div className="col-span-12 md:col-span-7">
                     <h3 className="text-2xl font-semibold text-gray-900 mb-4">Learn More About Us.</h3>
                     <div className="divide-y divide-gray-200 border border-gray-200 rounded-md">
-                      {[
-                        { label: "About Roberson Machine Company", href: "/about-us" },
-                        ...aboutItems,
-                        { label: "Customer Reviews", href: "/reviews" },
-                      ].map((it) => (
+                      {aboutItems.map((it) => (
                         <a
                           key={it.href}
                           href={it.href}
@@ -148,11 +166,7 @@ export default function Navbar() {
                   <div className="col-span-12 md:col-span-5">
                     <h4 className="text-2xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h4>
                     <div className="space-y-4">
-                      {[
-                        { title: "What is Multi Axis Machining?", href: "/about-us/faq" },
-                        { title: "What is CNC Milling?", href: "/about-us/faq#cnc-milling" },
-                        { title: "What is CNC Turning?", href: "/about-us/faq#cnc-turning" },
-                      ].map((q) => (
+                      {faqItems.map((q) => (
                         <a key={q.title} href={q.href} className="flex gap-3 group">
                           <Image src="/images/wind-tunnel-model.png" alt="FAQ" width={56} height={56} className="h-14 w-14 rounded-sm object-cover flex-none" />
                           <div className="min-w-0">
@@ -305,14 +319,7 @@ export default function Navbar() {
               >
                 <ul className="py-1">
                   {aboutItems.map((item) => (
-                    <li key={item.href}>
-                      <a
-                        href={item.href}
-                        className="block px-3 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
-                      >
-                        {item.label}
-                      </a>
-                    </li>
+                    <MobileMenuItem key={item.href} item={item} onClick={() => {}} />
                   ))}
                 </ul>
               </div>
@@ -339,14 +346,7 @@ export default function Navbar() {
               >
                 <ul className="py-1">
                   {serviceItems.map((item) => (
-                    <li key={item.href}>
-                      <a
-                        href={item.href}
-                        className="block px-3 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
-                      >
-                        {item.label}
-                      </a>
-                    </li>
+                    <MobileMenuItem key={item.href} item={item} onClick={() => {}} />
                   ))}
                 </ul>
               </div>
@@ -373,14 +373,7 @@ export default function Navbar() {
               >
                 <ul className="py-1">
                   {industryItems.map((item) => (
-                    <li key={item.href}>
-                      <a
-                        href={item.href}
-                        className="block px-3 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
-                      >
-                        {item.label}
-                      </a>
-                    </li>
+                    <MobileMenuItem key={item.href} item={item} onClick={() => {}} />
                   ))}
                 </ul>
               </div>

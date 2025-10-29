@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Orbitron, Michroma, Cairo } from 'next/font/google';
 import '@/styles/globals.css';
-import Navbar from '@/components/layout/RobertsonNavbar';
+import Navbar from '@/components/layout/Navbar';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 
 const inter = Inter({ subsets: ['latin'] });

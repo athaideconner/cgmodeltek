@@ -59,7 +59,8 @@ export default function ContactForm() {
       setSubmitSuccess(true);
       setFormData(initialFormData);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      // Handle error silently or use proper error handling system
+      setErrors({ message: 'Failed to submit form. Please try again.' });
     } finally {
       setIsSubmitting(false);
     }
