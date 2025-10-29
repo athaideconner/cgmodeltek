@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden -mt-16">
         {/* Background with enhanced gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-orange-500 via-orange-400 to-orange-300">
           <div className="absolute inset-0 bg-gradient-to-r from-orange-500/40 via-orange-500/20 to-orange-500/40" />
@@ -74,18 +74,18 @@ export default function Home() {
       <section className="w-full py-20 bg-gray-800 relative">
         <ArchitecturalBackground startIndex={1} count={6} opacity={0.3} />
         <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Why CG Model Tek?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Why CG Model Tek?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Unmatched Precision</h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">Unmatched Precision</h3>
               <p className="text-gray-200">Aerospace-grade precision for every prototype, ensuring accuracy in every detail.</p>
             </div>
             <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Proven Expertise</h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">Proven Expertise</h3>
               <p className="text-gray-200">Specialized in wind tunnel models, UAVs, and flight simulation with years of experience.</p>
             </div>
             <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Rapid Innovation</h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">Rapid Innovation</h3>
               <p className="text-gray-200">Fast iteration cycles to accelerate your aerospace development process.</p>
             </div>
           </div>
@@ -96,22 +96,22 @@ export default function Home() {
       <section className="w-full py-20 bg-gray-700 relative">
         <ArchitecturalBackground startIndex={7} count={6} opacity={0.3} />
         <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Our Specialties</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Our Specialties</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-gray-600 p-6 rounded-lg hover:bg-gray-500 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Prototyping & Scale Models</h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">Prototyping & Scale Models</h3>
               <p className="text-gray-200">Custom scale models for testing and validation.</p>
             </div>
             <div className="bg-gray-600 p-6 rounded-lg hover:bg-gray-500 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Aerodynamic Testing</h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">Aerodynamic Testing</h3>
               <p className="text-gray-200">Wind tunnel models for aerodynamic analysis.</p>
             </div>
             <div className="bg-gray-600 p-6 rounded-lg hover:bg-gray-500 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Advanced Manufacturing</h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">Advanced Manufacturing</h3>
               <p className="text-gray-200">CNC & additive manufacturing solutions.</p>
             </div>
             <div className="bg-gray-600 p-6 rounded-lg hover:bg-gray-500 transition-colors">
-              <h3 className="text-xl font-semibold mb-4">Material Science</h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">Material Science</h3>
               <p className="text-gray-200">Expertise in composites and advanced materials.</p>
             </div>
           </div>
@@ -121,7 +121,7 @@ export default function Home() {
       {/* Collaboration Section - Back to medium */}
       <section className="w-full py-20 bg-gray-800">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Seamless Collaboration</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Seamless Collaboration</h2>
           <p className="text-xl text-gray-200">
             From initial design to final validation, we work closely with engineers, manufacturers, and R&D teams to ensure aerospace-grade precision.
           </p>

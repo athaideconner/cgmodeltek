@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Orbitron, Michroma, Cairo } from 'next/font/google';
 import '@/styles/globals.css';
-import Navigation from '@/components/layout/Navigation';
+import Navbar from '@/components/layout/RobertsonNavbar';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -90,12 +90,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${orbitron.variable} ${michroma.variable} ${cairo.variable} min-h-screen bg-white`}>
+      <body className={`${inter.className} ${orbitron.variable} ${michroma.variable} ${cairo.variable} min-h-screen bg-gradient-to-b from-blue-950 to-slate-900`}>
         <ErrorBoundary>
-          <Navigation />
-          <main className="flex-1 pt-28">{children}</main>
+          <Navbar />
+          <main className="flex-1 pt-16 bg-white">{children}</main>
         </ErrorBoundary>
       </body>
     </html>
   );
-} 
+}

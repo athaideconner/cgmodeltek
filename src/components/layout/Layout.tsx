@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Navigation from './Navigation';
+import Navbar from './RobertsonNavbar';
 import Footer from './Footer';
 
 interface LayoutProps {
@@ -9,11 +9,11 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   return (
     <div className="flex flex-col min-h-screen">
-      <Navigation />
+      <Navbar />
       <main className="flex-grow pt-16">
         {children}
       </main>
       <Footer />
     </div>
   );
-} 
+}
